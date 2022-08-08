@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "15037414348",
+    "firebase_url": "https://pdp-t-9d91b-default-rtdb.firebaseio.com",
+    "project_id": "pdp-t-9d91b",
+    "storage_bucket": "pdp-t-9d91b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15037414348:android:19e165efd7b47c858d3b69",
+        "android_client_info": {
+          "package_name": "com.example.pdp_tcg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15037414348-krh4o8k9sbchqobj1khnl7dr1kkakbje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvU8w-FICnMuqdds9M9sl0GHt0CiCEI7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15037414348-krh4o8k9sbchqobj1khnl7dr1kkakbje.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "15037414348-mfs4ico4b0vpck2u3mo3jmfigaqs777v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pdpTcg"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
