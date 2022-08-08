@@ -1,4 +1,0 @@
-#Sun Aug 07 18:06:24 ICT 2022
-base.0=H\:\\Documents\\PDP TCG Project\\pdp_tcg\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
