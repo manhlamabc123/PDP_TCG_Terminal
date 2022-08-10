@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/constants.dart';
+import 'package:pdp_tcg/sign_in_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -9,19 +10,8 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Expanded(
-          //   child: Container(
-          //     decoration: const BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/1.jpg"),
-          //         fit: BoxFit.cover,
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 200, left: 20, right: 20),
@@ -43,32 +33,40 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Spacer(),
                 FittedBox(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 350),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 26, vertical: 16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: kPrimaryColor,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Start',
-                          style: Theme.of(context).textTheme.titleLarge,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SignInPage();
+                          },
                         ),
-                        const SizedBox(width: 10),
-                        const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.black,
-                        )
-                      ],
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 350),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 26, vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: kPrimaryColor,
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Get Started',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20, top: 20),
                   child: RichText(
                     text: const TextSpan(
                       text: 'Already have an account? Login here!',
