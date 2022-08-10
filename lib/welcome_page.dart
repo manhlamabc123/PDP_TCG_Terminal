@@ -30,11 +30,14 @@ class WelcomePage extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "Welcome to PDP Area 3.0\n",
-                          style: Theme.of(context).textTheme.displayMedium,
+                          style: Theme.of(context).textTheme.displaySmall,
                         ),
                         TextSpan(
                           text: "Where competition becomes fun!",
-                          style: Theme.of(context).textTheme.headlineSmall,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(color: Colors.white),
                         ),
                       ],
                     ),

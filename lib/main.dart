@@ -24,11 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kBackgroundColor,
         textTheme: const TextTheme(
-          displayMedium: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineSmall: TextStyle(
+          displaySmall: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
