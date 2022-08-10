@@ -35,7 +35,7 @@ class _LearnFlutterPageState extends State<LearnFlutterPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset('images/1.jpg'),
+            Image.asset('assets/1.jpg'),
             const SizedBox(
               height: 10,
             ),
