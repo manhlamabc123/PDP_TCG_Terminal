@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
-  bool isPasswordConfirmVisible = true;
   String password = '';
-  String passwordConfirm = '';
   final usernameController = TextEditingController();
 
   @override
@@ -37,7 +35,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 20,
                   ),
                   Text(
-                    'Create a new account',
+                    'Login',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(
@@ -51,10 +49,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     margin: const EdgeInsets.all(15),
                     child: buildPassword(),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(15),
-                    child: buildPasswordConfirm(),
-                  ),
                   Row(
                     children: [
                       const Spacer(),
@@ -65,10 +59,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             //TO DO
                             debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
-                            debugPrint('Confirm Password: $passwordConfirm');
                           },
                           child: const Text(
-                            'SIGN UP',
+                            'SIGN IN',
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -155,51 +148,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             obscureText: isPasswordVisible,
           )
-        ],
-      );
-
-  Widget buildPasswordConfirm() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Confirm Password',
-            style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Colors.white,
-                fontSize: 18),
-          ),
-          TextField(
-            onChanged: (value) => setState(() {
-              passwordConfirm = value;
-            }),
-            onSubmitted: (value) => setState(() {
-              passwordConfirm = value;
-            }),
-            decoration: InputDecoration(
-              hintText: 'Confirm your password...',
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: Colors.black, width: 3),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: Colors.blue, width: 3),
-              ),
-              filled: true,
-              fillColor: Colors.white,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isPasswordConfirmVisible = !isPasswordConfirmVisible;
-                  });
-                },
-                icon: isPasswordConfirmVisible
-                    ? const Icon(Icons.visibility_off)
-                    : const Icon(Icons.visibility),
-              ),
-            ),
-            obscureText: isPasswordVisible,
-          ),
         ],
       );
 }

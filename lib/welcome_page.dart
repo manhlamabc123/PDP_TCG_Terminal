@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/sign_up_page.dart';
+import 'package:pdp_tcg/sign_in_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -65,11 +66,23 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 20, top: 20),
-                  child: RichText(
-                    text: const TextSpan(
-                      text: 'Already have an account? Login here!',
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const SignInPage();
+                        },
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 20, top: 20),
+                    child: RichText(
+                      text: const TextSpan(
+                        text: 'Already have an account? Login here!',
+                      ),
                     ),
                   ),
                 ),
