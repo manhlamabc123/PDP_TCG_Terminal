@@ -18,52 +18,70 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Welcome Screen',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const RootPage(),
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: kBackgroundColor,
+        textTheme: const TextTheme(
+          displayMedium: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineSmall: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const WelcomePage(),
     );
   }
 }
 
-class RootPage extends StatefulWidget {
-  const RootPage({super.key});
+// class RootPage extends StatefulWidget {
+//   const RootPage({super.key});
 
-  @override
-  State<RootPage> createState() => _RootPageState();
-}
+//   @override
+//   State<RootPage> createState() => _RootPageState();
+// }
 
-class _RootPageState extends State<RootPage> {
-  int currentPage = 0;
-  List<Widget> pages = const [
-    HomePage(),
-    ProfilePage(),
-  ];
+// class _RootPageState extends State<RootPage> {
+//   int currentPage = 0;
+//   List<Widget> pages = const [
+//     HomePage(),
+//     ProfilePage(),
+//   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter'),
-      ),
-      body: pages[currentPage],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('Floating Action Button');
-        },
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        selectedIndex: currentPage,
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Flutter'),
+//       ),
+//       body: pages[currentPage],
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           debugPrint('Floating Action Button');
+//         },
+//         child: const Icon(Icons.add),
+//       ),
+//       bottomNavigationBar: NavigationBar(
+//         destinations: const [
+//           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+//           NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+//         ],
+//         onDestinationSelected: (int index) {
+//           setState(() {
+//             currentPage = index;
+//           });
+//         },
+//         selectedIndex: currentPage,
+//       ),
+//     );
+//   }
+// }
