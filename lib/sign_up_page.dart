@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/my_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -66,6 +67,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
                             debugPrint('Confirm Password: $passwordConfirm');
+                            MyAuth.signUpUser(
+                                usernameController.text, password);
                           },
                           child: const Text(
                             'SIGN UP',
