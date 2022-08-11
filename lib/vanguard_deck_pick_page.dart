@@ -10,6 +10,17 @@ class VanguardDeckPickPage extends StatefulWidget {
 class _VanguardDeckPickPageState extends State<VanguardDeckPickPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        child: const Text(
+          'Coming soon....',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+          ),
+        ),
+      ),
+    );
   }
 }
