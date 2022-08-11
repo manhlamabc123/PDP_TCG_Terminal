@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/home_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -59,6 +60,15 @@ class _SignInPageState extends State<SignInPage> {
                             //TO DO
                             debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
+                            //To HomePage
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const HomePage();
+                                },
+                              ),
+                            );
                           },
                           child: const Text(
                             'SIGN IN',
