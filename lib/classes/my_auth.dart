@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:pdp_tcg/user.dart';
+import 'package:pdp_tcg/classes/user.dart';
 
 class MyAuth {
   MyAuth.signUpUser(String username, String password) {

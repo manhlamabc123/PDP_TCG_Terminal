@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pdp_tcg/constants.dart';
-import 'package:pdp_tcg/vanguard_card.dart';
+import 'package:pdp_tcg/classes/vanguard_card.dart';
 
 class VanguardDeckPickPage extends StatefulWidget {
   const VanguardDeckPickPage({super.key});

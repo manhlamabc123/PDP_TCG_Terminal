@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/my_auth.dart';
+import 'package:pdp_tcg/classes/my_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
