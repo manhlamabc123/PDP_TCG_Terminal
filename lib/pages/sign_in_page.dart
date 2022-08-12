@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/pages/home_page.dart';
+import 'package:pdp_tcg/widgets/build_username.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -44,7 +45,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   Container(
                     margin: const EdgeInsets.all(15),
-                    child: buildUsername(),
+                    child: buildUsername(usernameController),
                   ),
                   Container(
                     margin: const EdgeInsets.all(15),
@@ -86,35 +87,6 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-
-  Widget buildUsername() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Username',
-            style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Colors.white,
-                fontSize: 18),
-          ),
-          TextField(
-            controller: usernameController,
-            decoration: InputDecoration(
-              hintText: 'Your username...',
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: Colors.black, width: 3),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: Colors.blue, width: 3),
-              ),
-              filled: true,
-              fillColor: Colors.white,
-            ),
-          ),
-        ],
-      );
 
   Widget buildPassword() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
