@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/classes/my_auth.dart';
+import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/pages/home_page.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 
@@ -13,6 +15,7 @@ class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
   String password = '';
   final usernameController = TextEditingController();
+  User? user;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,12 @@ class _SignInPageState extends State<SignInPage> {
                             //TO DO
                             debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
+                            setState(() {
+                              user = MyAuth.signInUser(
+                                usernameController.text,
+                                password,
+                              );
+                            });
                             //To HomePage
                             Navigator.push(
                               context,
