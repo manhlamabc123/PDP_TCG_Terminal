@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/constants.dart';
-import 'package:pdp_tcg/sign_up_page.dart';
-import 'package:pdp_tcg/sign_in_page.dart';
+import 'package:pdp_tcg/pages/sign_up_page.dart';
+import 'package:pdp_tcg/pages/sign_in_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

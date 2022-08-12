@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/home_page.dart';
+import 'package:pdp_tcg/pages/home_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

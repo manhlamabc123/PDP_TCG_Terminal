@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pdp_tcg/fight_page.dart';
-import 'package:pdp_tcg/leader_board_page.dart';
-import 'package:pdp_tcg/posts_page.dart';
-import 'package:pdp_tcg/profile_page.dart';
-import 'package:pdp_tcg/vanguard_deck_pick_page.dart';
+import 'package:pdp_tcg/pages/fight_page.dart';
+import 'package:pdp_tcg/pages/leader_board_page.dart';
+import 'package:pdp_tcg/pages/posts_page.dart';
+import 'package:pdp_tcg/pages/profile_page.dart';
+import 'package:pdp_tcg/pages/vanguard_deck_pick_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

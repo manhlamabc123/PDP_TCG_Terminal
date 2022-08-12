@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pdp_tcg/welcome_page.dart';
-import 'firebase_options.dart';
+import 'package:pdp_tcg/pages/welcome_page.dart';
+import 'package:pdp_tcg/firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
