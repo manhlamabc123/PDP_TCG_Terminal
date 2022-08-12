@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/classes/my_auth.dart';
+import 'package:pdp_tcg/pages/sign_in_page.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -69,7 +70,18 @@ class _SignUpPageState extends State<SignUpPage> {
                             debugPrint('Password: $password');
                             debugPrint('Confirm Password: $passwordConfirm');
                             MyAuth.signUpUser(
-                                usernameController.text, password);
+                              usernameController.text,
+                              password,
+                              passwordConfirm,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const SignInPage();
+                                },
+                              ),
+                            );
                           },
                           child: const Text(
                             'SIGN UP',
