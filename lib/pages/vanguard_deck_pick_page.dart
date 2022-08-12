@@ -51,7 +51,7 @@ class _VanguardDeckPickPageState extends State<VanguardDeckPickPage> {
             ),
           ),
           Text(
-            urlImages.isEmpty ? 'Card Name' : urlImages[currentCards].name,
+            urlImages.isEmpty ? 'Waiting...' : urlImages[currentCards].name,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 30,
