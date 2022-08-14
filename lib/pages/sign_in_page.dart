@@ -11,15 +11,23 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-String passErr1 = "password không đúng";
-bool passInvalid1 = false;
-bool passInvalid2 = true;
+const passwordError1 = "Incorrect Password";
+bool passwordInvalid1 = false;
+bool passwordInvalid2 = true;
 
 class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
   String password = '';
   final usernameController = TextEditingController();
   User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordInvalid1 = false;
+    passwordInvalid2 = false;
+    userInvalid = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                                 usernameController.text,
                                 password,
                               ).then((value) => () {
-                                    if (passInvalid2 == false) {
-                                        
+                                    if (passwordInvalid2 == false) {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -124,7 +131,7 @@ class _SignInPageState extends State<SignInPage> {
             }),
             decoration: InputDecoration(
               hintText: 'Your password...',
-              errorText: passInvalid1 ? passErr1 : null,
+              errorText: passwordInvalid1 ? passwordError1 : null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.black, width: 3),

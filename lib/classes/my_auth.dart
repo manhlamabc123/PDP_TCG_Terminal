@@ -39,9 +39,9 @@ class MyAuth {
       userInvalid = false;
     }
     if (password.isEmpty || password.length < 8) {
-      passInvalid1 = true;
+      passwordInvalid1 = true;
     } else {
-      passInvalid1 = false;
+      passwordInvalid1 = false;
     }
 
     // Get User from Database
@@ -50,10 +50,10 @@ class MyAuth {
     if (snapshot.exists) {
       Map map = snapshot.value as dynamic;
       if (password == map['password']) {
-        passInvalid1 = false;
-        passInvalid2 = false;
+        passwordInvalid1 = false;
+        passwordInvalid2 = false;
       } else {
-        passInvalid1 = true;
+        passwordInvalid1 = true;
       }
     } else {
       userInvalid = true;
