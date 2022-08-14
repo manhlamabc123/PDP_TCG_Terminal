@@ -9,10 +9,10 @@ class SignUpPage extends StatefulWidget {
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
-var passErr = "password phải trên 8 kí tự";
-var passCFErr = "Confirm password không hợp lệ";
-var passInvalid = false;
-var passCFInvalid = false;
+String passErr = "password phải trên 8 kí tự";
+String passCFErr = "Confirm password không hợp lệ";
+bool passInvalid = false;
+bool passCFInvalid = false;
 
 class _SignUpPageState extends State<SignUpPage> {
   bool isPasswordVisible = true;

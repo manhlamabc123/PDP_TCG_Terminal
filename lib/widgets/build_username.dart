@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-var userNameErr = "Username không hợp lệ";
-var userInvalid = false;
+ String userNameErr = "Username không hợp lệ";
+ bool userInvalid = false;
 
 Widget buildUsername(TextEditingController textEditingController) 
 => Column(
