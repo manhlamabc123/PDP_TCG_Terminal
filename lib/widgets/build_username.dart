@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-Widget buildUsername(TextEditingController textEditingController) => Column(
+var userNameErr = "Username không hợp lệ";
+var userInvalid = false;
+
+Widget buildUsername(TextEditingController textEditingController) 
+=> Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -13,6 +17,8 @@ Widget buildUsername(TextEditingController textEditingController) => Column(
           TextField(
             controller: textEditingController,
             decoration: InputDecoration(
+              errorText: userInvalid ? userNameErr: null ,
+            
               hintText: 'Your username...',
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
