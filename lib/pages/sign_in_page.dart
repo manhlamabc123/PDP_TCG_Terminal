@@ -14,12 +14,12 @@ class SignInPage extends StatefulWidget {
 const passwordError1 = "Incorrect Password";
 bool passwordInvalid1 = false;
 bool passwordInvalid2 = true;
+User? userCurrent;
 
 class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
   String password = '';
   final usernameController = TextEditingController();
-  User? user;
 
   @override
   void initState() {
@@ -76,24 +76,18 @@ class _SignInPageState extends State<SignInPage> {
                             //TO DO
                             debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
-                            setState(() {
-                              MyAuth.signInUser(
-                                usernameController.text,
-                                password,
-                              ).then((value) => () {
-                                    if (passwordInvalid2 == false) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return const HomePage();
-                                          },
-                                        ),
-                                      );
-                                    }
-                                  });
-                            });
-                            //To HomePage
+                            MyAuth.signInUser(
+                              usernameController.text,
+                              password,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const HomePage();
+                                },
+                              ),
+                            );
                           },
                           child: const Text(
                             'SIGN IN',

@@ -31,7 +31,7 @@ class MyAuth {
     ref.child('User').child(username).set(user.toJson());
   }
 
-  static Future<User> signInUser(String username, String password) async {
+  static Future<void> signInUser(String username, String password) async {
     // Check conditions
     if (username.isEmpty) {
       userInvalid = true;
@@ -52,13 +52,14 @@ class MyAuth {
       if (password == map['password']) {
         passwordInvalid1 = false;
         passwordInvalid2 = false;
+        User user = User(map['username'], map['password']);
+        userCurrent = user;
+        return;
       } else {
         passwordInvalid1 = true;
       }
     } else {
       userInvalid = true;
     }
-    User user = User(username, password);
-    return Future.value(user);
   }
 }

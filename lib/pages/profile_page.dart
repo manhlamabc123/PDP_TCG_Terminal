@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/pages/sign_in_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,15 +12,22 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: const Text(
-          'Coming soon....',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 350,
           ),
-        ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              'Username: ${userCurrent!.username}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
