@@ -9,6 +9,10 @@ class SignUpPage extends StatefulWidget {
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
+var passErr = "password phải trên 8 kí tự";
+var passCFErr = "Confirm password không hợp lệ";
+var passInvalid = false;
+var passCFInvalid = false;
 
 class _SignUpPageState extends State<SignUpPage> {
   bool isPasswordVisible = true;
@@ -16,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String password = '';
   String passwordConfirm = '';
   final usernameController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +71,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             //TO DO
-                            debugPrint('Username: ${usernameController.text}');
+                            setState(() {
+                              debugPrint('Username: ${usernameController.text}');
                             debugPrint('Password: $password');
                             debugPrint('Confirm Password: $passwordConfirm');
                             MyAuth.signUpUser(
@@ -74,14 +80,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               password,
                               passwordConfirm,
                             );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const SignInPage();
-                                },
-                              ),
-                            );
+                            });
+                            
+                          if (!userInvalid && !passInvalid && !passCFInvalid) {
+      Navigator.push(context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const SignInPage();
+          },
+        ),
+      );
+    }
                           },
                           child: const Text(
                             'SIGN UP',
@@ -119,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
             }),
             decoration: InputDecoration(
               hintText: 'Your password...',
+              errorText: passInvalid ? passErr: null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.black, width: 3),
@@ -164,6 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
             }),
             decoration: InputDecoration(
               hintText: 'Confirm your password...',
+              errorText: passCFInvalid ? passCFErr: null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.black, width: 3),
