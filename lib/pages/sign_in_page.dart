@@ -4,15 +4,17 @@ import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/pages/home_page.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 
-
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
-var passErr1 = "password không đúng";
-var passInvalid1 = false;
+
+String passErr1 = "password không đúng";
+bool passInvalid1 = false;
+bool passInvalid2 = true;
+
 class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
   String password = '';
@@ -70,18 +72,21 @@ class _SignInPageState extends State<SignInPage> {
                               MyAuth.signInUser(
                                 usernameController.text,
                                 password,
-                              );
+                              ).then((value) => () {
+                                    if (passInvalid2 == false) {
+                                        
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return const HomePage();
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  });
                             });
-                            //To HomePage 
-
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) {
-                            //       return const HomePage();
-                            //     },
-                            //   ),
-                            // );
+                            //To HomePage
                           },
                           child: const Text(
                             'SIGN IN',
@@ -119,7 +124,7 @@ class _SignInPageState extends State<SignInPage> {
             }),
             decoration: InputDecoration(
               hintText: 'Your password...',
-              errorText: passInvalid1 ? passErr1: null,
+              errorText: passInvalid1 ? passErr1 : null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.black, width: 3),
