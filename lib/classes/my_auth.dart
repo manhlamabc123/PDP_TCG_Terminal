@@ -47,12 +47,9 @@ class MyAuth {
     // Get User from Database
     final ref = FirebaseDatabase.instance.ref();
     final snapshot = await ref.child('User').child(username).get();
-
     if (snapshot.exists) {
       Map map = snapshot.value as dynamic;
-
       if (password == map['password']) {
-      
         passInvalid1 = false;
         passInvalid2 = false;
       } else {
@@ -60,11 +57,8 @@ class MyAuth {
       }
     } else {
       userInvalid = true;
-
     }
-    // Compare password
-
     User user = User(username, password);
-    return user;
+    return Future.value(user);
   }
 }
