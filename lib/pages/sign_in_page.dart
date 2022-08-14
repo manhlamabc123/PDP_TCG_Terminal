@@ -27,6 +27,7 @@ class _SignInPageState extends State<SignInPage> {
     passwordInvalid1 = false;
     passwordInvalid2 = false;
     userInvalid = false;
+    userCurrent = null;
   }
 
   @override
@@ -79,15 +80,21 @@ class _SignInPageState extends State<SignInPage> {
                             MyAuth.signInUser(
                               usernameController.text,
                               password,
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const HomePage();
-                                },
-                              ),
-                            );
+                            ).then((value) {
+                              setState(() {
+                                userCurrent = value;
+                              });
+                              if (userCurrent != null) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const HomePage();
+                                    },
+                                  ),
+                                );
+                              }
+                            });
                           },
                           child: const Text(
                             'SIGN IN',
