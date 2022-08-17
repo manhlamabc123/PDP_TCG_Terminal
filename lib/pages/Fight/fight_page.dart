@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/pages/Fight/create_fight_page.dart';
 
 class FightPage extends StatelessWidget {
   const FightPage({super.key});
 
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -37,7 +39,16 @@ class FightPage extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 10),
                 padding: const EdgeInsets.only(left: 38),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const Createfightpage();
+                                    },
+                                  ),
+                                );
+                  },
 
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
