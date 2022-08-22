@@ -1,16 +1,42 @@
-# pdp_tcg
+# PDP Area 3.0
 
-A new Flutter project.
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#purpose-of-project">Purpose of Project</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#technologies">Technologies</a></li>
+    <li><a href="#made-by">Made By</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-## Getting Started
+## Purpose of Project
 
-This project is a starting point for a Flutter application.
+* This is the App I made for my TCG Club
+* Learn about Flutter
 
-A few resources to get you started if this is your first Flutter project:
+## About
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+With this App, users can do:
+* Pick their first Cardfight! Vanguard Deck
+* Check out Club's news like Events, Posts, ...
+* Create Duel/Fight between Club member
+* ...
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Highlights
+
+* Easy to use
+
+## Technologies
+
+* Language: Dart
+* Technology: Flutter
+* Database: Firebase
+
+## Made by
+
+* Trần Đức Mạnh (me)
+
+## Acknowledgments
