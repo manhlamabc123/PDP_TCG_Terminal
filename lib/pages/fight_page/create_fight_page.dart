@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -15,6 +14,9 @@ class _CreateFightPageState extends State<CreateFightPage> {
   List<String> userList = ['User 1', 'User 2'];
   String formatValue = 'Standard';
   String? userListValue;
+  String? yourDeck;
+  final textFieldHeight = 58.0;
+  final textFieldWidth = 200.0;
 
   @override
   void initState() {
@@ -106,6 +108,110 @@ class _CreateFightPageState extends State<CreateFightPage> {
                           userListValue = value!;
                         }),
                         dropdownColor: kBackgroundColor,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Your Deck: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      width: textFieldWidth,
+                      height: textFieldHeight,
+                      child: TextField(
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                        onChanged: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        onSubmitted: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        decoration: InputDecoration(
+                          hintStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          hintText: 'Deck\'s name...',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Opponent Deck: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      width: textFieldWidth,
+                      height: textFieldHeight,
+                      child: TextField(
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                        onChanged: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        onSubmitted: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        decoration: InputDecoration(
+                          hintStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          hintText: 'Deck\'s name...',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
