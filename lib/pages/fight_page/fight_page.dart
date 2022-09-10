@@ -53,8 +53,8 @@ class FightPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Ink.image(
-                        image: const NetworkImage(
-                            'https://animeweb.xyz/wp-content/uploads/2022/07/cardfight-vanguard-willdress.jpg'),
+                        image: const AssetImage(
+                            "assets/cardfight-vanguard-willdress.jpg"),
                         height: 200,
                         width: 150,
                         fit: BoxFit.cover,
@@ -87,8 +87,8 @@ class FightPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Ink.image(
-                        image: const NetworkImage(
-                            'https://cdn-eu.anidb.net/images/main/270526.jpg'),
+                        image: const AssetImage(
+                            "assets/cc67f22d58cc1c956f444718e2218420.jpg"),
                         height: 200,
                         width: 150,
                         fit: BoxFit.cover,
