@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 import 'package:pdp_tcg/pages/sign_up_page.dart';
@@ -66,5 +67,29 @@ class MyAuth {
       }
     }
     return Future.value(null);
+  }
+
+  static void submitRecord(
+    String format,
+    String you,
+    String opponent,
+    String yourDeck,
+    String opponentDeck,
+    String yourScore,
+    String opponentScore,
+  ) {
+    DateTime now = DateTime.now();
+    final ref = FirebaseDatabase.instance.ref();
+    Record record = Record(
+      format,
+      you,
+      opponent,
+      yourDeck,
+      yourScore,
+      opponentDeck,
+      opponentScore,
+    );
+    String id = "$format-$you-$opponent-${now.toString().replaceAll('.', '-')}";
+    ref.child('Record').child(id).set(record.toJson());
   }
 }

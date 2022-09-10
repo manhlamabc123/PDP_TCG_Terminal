@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/classes/my_auth.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pdp_tcg/pages/sign_in_page.dart';
 
 class CreateFightPage extends StatefulWidget {
   const CreateFightPage({super.key});
@@ -15,10 +17,13 @@ class _CreateFightPageState extends State<CreateFightPage> {
   String formatValue = 'Standard';
   String? userListValue;
   String? yourDeck;
+  String? opponentDeck;
+  String? yourScore;
+  String? opponentScore;
   final textFieldHeight = 58.0;
   final textFieldWidth = 200.0;
-  final scoreFieldHeight = 40.0;
-  final scoreFieldWidth = 40.0;
+  final scoreFieldHeight = 50.0;
+  final scoreFieldWidth = 50.0;
 
   @override
   void initState() {
@@ -33,6 +38,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Container(
@@ -188,10 +194,10 @@ class _CreateFightPageState extends State<CreateFightPage> {
                           fontSize: 20,
                         ),
                         onChanged: (value) => setState(() {
-                          yourDeck = value;
+                          opponentDeck = value;
                         }),
                         onSubmitted: (value) => setState(() {
-                          yourDeck = value;
+                          opponentDeck = value;
                         }),
                         decoration: InputDecoration(
                           hintStyle: const TextStyle(
@@ -199,7 +205,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
                             fontSize: 20,
                             fontStyle: FontStyle.italic,
                           ),
-                          hintText: 'Deck\'s name',
+                          hintText: 'Deck\'s name...',
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: const BorderSide(
@@ -248,10 +254,10 @@ class _CreateFightPageState extends State<CreateFightPage> {
                         ),
                         keyboardType: TextInputType.number,
                         onChanged: (value) => setState(() {
-                          yourDeck = value;
+                          yourScore = value;
                         }),
                         onSubmitted: (value) => setState(() {
-                          yourDeck = value;
+                          yourScore = value;
                         }),
                         decoration: InputDecoration(
                           hintStyle: const TextStyle(
@@ -305,10 +311,10 @@ class _CreateFightPageState extends State<CreateFightPage> {
                         ),
                         keyboardType: TextInputType.number,
                         onChanged: (value) => setState(() {
-                          yourDeck = value;
+                          opponentScore = value;
                         }),
                         onSubmitted: (value) => setState(() {
-                          yourDeck = value;
+                          opponentScore = value;
                         }),
                         decoration: InputDecoration(
                           hintStyle: const TextStyle(
@@ -345,7 +351,16 @@ class _CreateFightPageState extends State<CreateFightPage> {
               width: double.infinity,
               height: 60,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  MyAuth.submitRecord(
+                      formatValue,
+                      userCurrent!.username,
+                      userListValue!,
+                      yourDeck!,
+                      opponentDeck!,
+                      yourScore!.toString(),
+                      opponentScore!.toString());
+                },
                 child: const Text(
                   'Record',
                   style: TextStyle(fontSize: 20),
