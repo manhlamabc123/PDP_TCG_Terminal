@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/constants.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CreateFightPage extends StatefulWidget {
   const CreateFightPage({super.key});
@@ -12,7 +14,17 @@ class _CreateFightPageState extends State<CreateFightPage> {
   final vanguardFormat = ['Standard', 'V-Premium', 'Premium'];
   List<String> userList = ['User 1', 'User 2'];
   String formatValue = 'Standard';
-  String userListValue = 'User 1';
+  String? userListValue;
+
+  @override
+  void initState() {
+    super.initState();
+    getUserList().then((value) {
+      setState(() {
+        userList = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +74,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
                         value: formatValue,
                         items: vanguardFormat.map(buildMenuItem).toList(),
                         onChanged: (value) => setState(() {
-                          this.formatValue = value!;
+                          formatValue = value!;
                         }),
                         dropdownColor: kBackgroundColor,
                       ),
@@ -91,7 +103,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
                         value: userListValue,
                         items: userList.map(buildMenuItem).toList(),
                         onChanged: (value) => setState(() {
-                          this.userListValue = value!;
+                          userListValue = value!;
                         }),
                         dropdownColor: kBackgroundColor,
                       ),
@@ -116,4 +128,19 @@ class _CreateFightPageState extends State<CreateFightPage> {
           ),
         ),
       );
+
+  Future<List<String>> getUserList() async {
+    List<String> users = [];
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('User').get();
+    if (snapshot.exists) {
+      Map map = snapshot.value as dynamic;
+      map.forEach((key, value) {
+        users.add(value['username']);
+      });
+    } else {
+      debugPrint('Nothing');
+    }
+    return Future.value(users);
+  }
 }
