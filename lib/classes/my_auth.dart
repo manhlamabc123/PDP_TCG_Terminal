@@ -72,6 +72,7 @@ class MyAuth {
   }
 
   static void submitRecord(
+    String status,
     String format,
     String you,
     String opponent,
@@ -83,6 +84,7 @@ class MyAuth {
     DateTime now = DateTime.now();
     final ref = FirebaseDatabase.instance.ref();
     Record record = Record(
+      status,
       format,
       you,
       opponent,

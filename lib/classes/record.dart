@@ -1,4 +1,5 @@
 class Record {
+  String status;
   String format;
   String you;
   String opponent;
@@ -7,10 +8,11 @@ class Record {
   String yourScore;
   String opponentScore;
 
-  Record(this.format, this.you, this.opponent, this.yourDeck, this.yourScore,
+  Record(this.status, this.format, this.you, this.opponent, this.yourDeck, this.yourScore,
       this.opponentDeck, this.opponentScore);
 
   Map<String, dynamic> toJson() => {
+        'status': status,
         'format': format,
         'you': you,
         'opponent': opponent,

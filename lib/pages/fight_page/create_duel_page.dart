@@ -15,8 +15,10 @@ class CreateDuelPage extends StatefulWidget {
 
 class _CreateDuelPageState extends State<CreateDuelPage> {
   final vanguardFormat = ['Master Duel', 'Goat', 'Speed', 'Rush'];
+  final status = ['Official', 'Unofficial'];
   List<String> userList = ['User 1', 'User 2'];
   String formatValue = 'Master Duel';
+  String statusValue = 'Unofficial';
   String? userListValue;
   String? yourDeck;
   String? opponentDeck;
@@ -65,6 +67,35 @@ class _CreateDuelPageState extends State<CreateDuelPage> {
             ),
             child: Column(
               children: [
+                Row(
+                  children: [
+                    const Text(
+                      'Status: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.white, width: 1),
+                      ),
+                      child: DropdownButton<String>(
+                        value: statusValue,
+                        items: status.map(buildMenuItem).toList(),
+                        onChanged: (value) => setState(() {
+                          statusValue = value!;
+                        }),
+                        dropdownColor: kBackgroundColor,
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   children: [
                     const Text(
@@ -358,6 +389,7 @@ class _CreateDuelPageState extends State<CreateDuelPage> {
                       opponentDeck, yourScore, opponentScore);
                   if (check) {
                     MyAuth.submitRecord(
+                        statusValue,
                         formatValue,
                         userCurrent!.username,
                         userListValue!,
