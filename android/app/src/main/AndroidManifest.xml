@@ -2,7 +2,7 @@
     package="com.example.pdp_tcg">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="pdp_tcg"
+        android:label="PDP Area 3.0"
         android:name="${applicationName}"
         android:icon="@mipmap/vanguard_icon">
         <activity
