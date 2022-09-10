@@ -12,9 +12,9 @@ class CreateDuelPage extends StatefulWidget {
 }
 
 class _CreateDuelPageState extends State<CreateDuelPage> {
-  final vanguardFormat = ['Standard', 'V-Premium', 'Premium'];
+  final vanguardFormat = ['Master Duel', 'Goat', 'Speed', 'Rush'];
   List<String> userList = ['User 1', 'User 2'];
-  String formatValue = 'Standard';
+  String formatValue = 'Master Duel';
   String? userListValue;
   String? yourDeck;
   String? opponentDeck;
