@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/constants.dart';
 
 class CreateFightPage extends StatefulWidget {
   const CreateFightPage({super.key});
@@ -8,7 +9,11 @@ class CreateFightPage extends StatefulWidget {
 }
 
 class _CreateFightPageState extends State<CreateFightPage> {
-  String dropdownValue = 'username';
+  final vanguardFormat = ['Standard', 'V-Premium', 'Premium'];
+  List<String> userList = ['User 1', 'User 2'];
+  String formatValue = 'Standard';
+  String userListValue = 'User 1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,79 +31,89 @@ class _CreateFightPageState extends State<CreateFightPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 100, right: 120),
-            child: const Text(
-              'Choose your opponent',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: kBackgroundColor1,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: kBackgroundColor1, width: 1),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const Text(
+                      'Format: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.white, width: 1),
+                      ),
+                      child: DropdownButton<String>(
+                        value: formatValue,
+                        items: vanguardFormat.map(buildMenuItem).toList(),
+                        onChanged: (value) => setState(() {
+                          this.formatValue = value!;
+                        }),
+                        dropdownColor: kBackgroundColor,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Opponent: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.white, width: 1),
+                      ),
+                      child: DropdownButton<String>(
+                        value: userListValue,
+                        items: userList.map(buildMenuItem).toList(),
+                        onChanged: (value) => setState(() {
+                          this.userListValue = value!;
+                        }),
+                        dropdownColor: kBackgroundColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 1, right: 210),
-            child: DropdownButton<String>(
-              value: dropdownValue,
-              icon: const Icon(Icons.arrow_drop_down),
-              elevation: 16,
-              style:
-                  const TextStyle(fontSize: 20, color: Colors.lightBlueAccent),
-              underline: Container(
-                height: 2,
-                color: Colors.white,
-              ),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                });
-              },
-              items: <String>['username', 'Two', 'Free', 'Four']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10, right: 200),
-            child: const Text(
-              'Match details',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20, right: 35, left: 35),
-            child: TextField(
-              maxLines: 4,
-              keyboardType: TextInputType.text,
-              style: const TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 90, left: 200),
-            child: TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.lightBlue),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              child: const Text("\t\t\tCHALLENGE\t\t\t"),
-            ),
-          )
         ],
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
+      );
 }
