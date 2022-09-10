@@ -43,7 +43,7 @@ class FightPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const Createfightpage();
+                          return const CreateFightPage();
                         },
                       ),
                     );

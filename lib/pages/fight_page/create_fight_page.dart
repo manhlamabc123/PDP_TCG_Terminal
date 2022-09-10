@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Createfightpage extends StatefulWidget {
-  const Createfightpage({super.key});
+class CreateFightPage extends StatefulWidget {
+  const CreateFightPage({super.key});
 
   @override
-  State<Createfightpage> createState() => _CreatefightpageState();
+  State<CreateFightPage> createState() => _CreateFightPageState();
 }
 
-class _CreatefightpageState extends State<Createfightpage> {
+class _CreateFightPageState extends State<CreateFightPage> {
   String dropdownValue = 'username';
   @override
   Widget build(BuildContext context) {
