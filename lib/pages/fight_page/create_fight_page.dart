@@ -335,8 +335,22 @@ class _CreateFightPageState extends State<CreateFightPage> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(15),
+            child: SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                  'Record',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ),
           ),
         ],
