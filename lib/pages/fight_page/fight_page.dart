@@ -5,7 +5,6 @@ class FightPage extends StatelessWidget {
   const FightPage({super.key});
 
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -41,33 +40,30 @@ class FightPage extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const Createfightpage();
-                                    },
-                                  ),
-                                );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const Createfightpage();
+                        },
+                      ),
+                    );
                   },
-
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      
                       Ink.image(
                         image: const NetworkImage(
                             'https://animeweb.xyz/wp-content/uploads/2022/07/cardfight-vanguard-willdress.jpg'),
                         height: 200,
                         width: 150,
                         fit: BoxFit.cover,
-                        
                       ),
-                      const SizedBox(height:  6),
+                      const SizedBox(height: 6),
                       const Text(
-                          'Cardfight! Vanguard',
-                          style: TextStyle(fontSize: 15, color: Colors.white ),
-                        ),
-                     const SizedBox(height:  6),
+                        'Cardfight! Vanguard',
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                      const SizedBox(height: 6),
                     ],
                   ),
                 ),
@@ -77,25 +73,22 @@ class FightPage extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 38),
                 child: InkWell(
                   onTap: () {},
-
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      
                       Ink.image(
                         image: const NetworkImage(
                             'https://cdn-eu.anidb.net/images/main/270526.jpg'),
                         height: 200,
                         width: 150,
                         fit: BoxFit.cover,
-                        
                       ),
-                      const SizedBox(height:  6),
+                      const SizedBox(height: 6),
                       const Text(
-                          'Yu-Gi-Oh!',
-                          style: TextStyle(fontSize: 15, color: Colors.white ),
-                        ),
-                     const SizedBox(height:  6),
+                        'Yu-Gi-Oh!',
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                      const SizedBox(height: 6),
                     ],
                   ),
                 ),
