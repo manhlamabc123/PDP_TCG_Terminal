@@ -36,8 +36,7 @@ class _HomePageState extends State<HomePage> {
           NavigationDestination(
               icon: Icon(FontAwesomeIcons.inbox), label: 'Support'),
           NavigationDestination(
-              icon: Icon(FontAwesomeIcons.peopleArrowsLeftRight),
-              label: 'Duel/Fight'),
+              icon: Icon(FontAwesomeIcons.penToSquare), label: 'Record'),
           NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
         onDestinationSelected: (int index) {
