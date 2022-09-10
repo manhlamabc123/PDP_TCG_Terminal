@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/classes/my_auth.dart';
+import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
