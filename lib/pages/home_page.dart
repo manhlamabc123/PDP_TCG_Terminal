@@ -30,11 +30,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
-              icon: Icon(FontAwesomeIcons.trophy), label: 'Leader Board'),
+              icon: Icon(FontAwesomeIcons.trophy), label: 'Ranking'),
           NavigationDestination(
               icon: Icon(FontAwesomeIcons.newspaper), label: 'Posts'),
           NavigationDestination(
-              icon: Icon(FontAwesomeIcons.inbox), label: 'Deck Picker'),
+              icon: Icon(FontAwesomeIcons.inbox), label: 'Support'),
           NavigationDestination(
               icon: Icon(FontAwesomeIcons.peopleArrowsLeftRight),
               label: 'Duel/Fight'),
