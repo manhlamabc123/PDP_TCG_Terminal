@@ -17,6 +17,8 @@ class _CreateFightPageState extends State<CreateFightPage> {
   String? yourDeck;
   final textFieldHeight = 58.0;
   final textFieldWidth = 200.0;
+  final scoreFieldHeight = 40.0;
+  final scoreFieldWidth = 40.0;
 
   @override
   void initState() {
@@ -197,7 +199,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
                             fontSize: 20,
                             fontStyle: FontStyle.italic,
                           ),
-                          hintText: 'Deck\'s name...',
+                          hintText: 'Deck\'s name',
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: const BorderSide(
@@ -217,6 +219,123 @@ class _CreateFightPageState extends State<CreateFightPage> {
                     ),
                   ],
                 ),
+                Row(
+                  children: [
+                    const Text(
+                      'Score: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      'You: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      width: scoreFieldWidth,
+                      height: scoreFieldHeight,
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        onSubmitted: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        decoration: InputDecoration(
+                          hintStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          hintText: '0',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      '-',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      'Opp: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      width: scoreFieldWidth,
+                      height: scoreFieldHeight,
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        onSubmitted: (value) => setState(() {
+                          yourDeck = value;
+                        }),
+                        decoration: InputDecoration(
+                          hintStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          hintText: '0',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
