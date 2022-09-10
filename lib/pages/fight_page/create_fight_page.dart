@@ -3,6 +3,7 @@ import 'package:pdp_tcg/classes/my_auth.dart';
 import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pdp_tcg/pages/fight_page/fight_page.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
 
 class CreateFightPage extends StatefulWidget {
@@ -361,6 +362,14 @@ class _CreateFightPageState extends State<CreateFightPage> {
                       opponentDeck!,
                       yourScore!.toString(),
                       opponentScore!.toString());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const FightPage();
+                      },
+                    ),
+                  );
                 },
                 child: const Text(
                   'Record',
