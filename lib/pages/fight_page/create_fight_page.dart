@@ -34,13 +34,14 @@ class _CreateFightPageState extends State<CreateFightPage> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 100, right: 150),
+            margin: const EdgeInsets.only(top: 100, right: 130),
             padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
             child: const Text(
-              'Create a fight',
+              'Create a record:',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
