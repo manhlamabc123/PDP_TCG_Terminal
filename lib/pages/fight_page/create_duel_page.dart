@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/classes/my_auth.dart';
+import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:pdp_tcg/pages/fight_page/fight_page.dart';
@@ -353,22 +354,28 @@ class _CreateDuelPageState extends State<CreateDuelPage> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  MyAuth.submitRecord(
-                      formatValue,
-                      userCurrent!.username,
-                      userListValue!,
-                      yourDeck!,
-                      opponentDeck!,
-                      yourScore!.toString(),
-                      opponentScore!.toString());
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const FightPage();
-                      },
-                    ),
-                  );
+                  bool check = MyAuth.checkSubmitInput(userListValue, yourDeck,
+                      opponentDeck, yourScore, opponentScore);
+                  if (check) {
+                    MyAuth.submitRecord(
+                        formatValue,
+                        userCurrent!.username,
+                        userListValue!,
+                        yourDeck!,
+                        opponentDeck!,
+                        yourScore!.toString(),
+                        opponentScore!.toString());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const FightPage();
+                        },
+                      ),
+                    );
+                  } else {
+                    showToast("All fields must be filled!!!");
+                  }
                 },
                 child: const Text(
                   'Record',

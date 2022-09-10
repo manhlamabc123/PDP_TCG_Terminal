@@ -5,6 +5,7 @@ import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 import 'package:pdp_tcg/pages/sign_up_page.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
+import 'package:flutter/material.dart';
 
 class MyAuth {
   static void signUpUser(
@@ -96,5 +97,15 @@ class MyAuth {
         .child(id)
         .set(record.toJson())
         .then((value) => showToast('Record Added Successfully.'));
+  }
+
+  static bool checkSubmitInput(String? opponent, String? yourDeck,
+      String? opponentDeck, String? yourScore, String? opponentScore) {
+    if (opponent == null ||
+        yourDeck == null ||
+        opponentDeck == null ||
+        yourScore == null ||
+        opponentScore == null) return false;
+    return true;
   }
 }

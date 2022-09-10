@@ -354,22 +354,28 @@ class _CreateFightPageState extends State<CreateFightPage> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  MyAuth.submitRecord(
-                      formatValue,
-                      userCurrent!.username,
-                      userListValue!,
-                      yourDeck!,
-                      opponentDeck!,
-                      yourScore!.toString(),
-                      opponentScore!.toString());
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const FightPage();
-                      },
-                    ),
-                  );
+                  bool check = MyAuth.checkSubmitInput(userListValue, yourDeck,
+                      opponentDeck, yourScore, opponentScore);
+                  if (check) {
+                    MyAuth.submitRecord(
+                        formatValue,
+                        userCurrent!.username,
+                        userListValue!,
+                        yourDeck!,
+                        opponentDeck!,
+                        yourScore!.toString(),
+                        opponentScore!.toString());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const FightPage();
+                        },
+                      ),
+                    );
+                  } else {
+                    showToast("All fields must be filled!!!");
+                  }
                 },
                 child: const Text(
                   'Record',
