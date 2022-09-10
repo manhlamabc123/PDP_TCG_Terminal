@@ -208,7 +208,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     : const Icon(Icons.visibility),
               ),
             ),
-            obscureText: isPasswordVisible,
+            obscureText: isPasswordConfirmVisible,
           ),
         ],
       );
