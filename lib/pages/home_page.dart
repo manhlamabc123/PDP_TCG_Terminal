@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pdp_tcg/pages/Fight/fight_page.dart';
+import 'package:pdp_tcg/pages/fight_page/fight_page.dart';
 import 'package:pdp_tcg/pages/leader_board_page.dart';
 import 'package:pdp_tcg/pages/posts_page.dart';
 import 'package:pdp_tcg/pages/profile_page.dart';

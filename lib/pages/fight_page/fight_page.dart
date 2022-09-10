@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/pages/Fight/create_fight_page.dart';
+import 'package:pdp_tcg/pages/fight_page/create_fight_page.dart';
 
 class FightPage extends StatelessWidget {
   const FightPage({super.key});
