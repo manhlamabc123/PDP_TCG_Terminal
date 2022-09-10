@@ -36,14 +36,6 @@ class _CreateFightPageState extends State<CreateFightPage> {
             ),
           ),
           Container(
-//             child: DropdownButton(
-//               value: valueChoose,
-//               onChanged: (newValue) {
-// setState()
-
-//               },
-//               items: ListItem.map(
-//           ),
             margin: const EdgeInsets.only(top: 1, right: 210),
             child: DropdownButton<String>(
               value: dropdownValue,
