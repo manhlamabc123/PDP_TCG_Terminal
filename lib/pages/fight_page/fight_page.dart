@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/pages/fight_page/create_fight_page.dart';
+import 'package:pdp_tcg/pages/fight_page/create_duel_page.dart';
 
 class FightPage extends StatelessWidget {
   const FightPage({super.key});
@@ -72,7 +73,16 @@ class FightPage extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 10),
                 padding: const EdgeInsets.only(right: 38),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const CreateDuelPage();
+                        },
+                      ),
+                    );
+                  },
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
