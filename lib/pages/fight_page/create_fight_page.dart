@@ -93,22 +93,18 @@ class _CreatefightpageState extends State<Createfightpage> {
               ),
             ),
           ),
-
-         Container(
-          margin: const EdgeInsets.only(top: 90, left:200),
-           child: TextButton (
-            
-                      onPressed: () {},
-                      style: ButtonStyle(                                 
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlue),
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        
-                      ),
-            
-                      child: const Text("\t\t\tCHALLENGE\t\t\t"
-                      ),
-                      ),
-         )
+          Container(
+            margin: const EdgeInsets.only(top: 90, left: 200),
+            child: TextButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.lightBlue),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              child: const Text("\t\t\tCHALLENGE\t\t\t"),
+            ),
+          )
         ],
       ),
     );
