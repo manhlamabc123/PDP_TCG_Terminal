@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:pdp_tcg/classes/record.dart';
+import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 import 'package:pdp_tcg/pages/sign_up_page.dart';
@@ -90,6 +91,10 @@ class MyAuth {
       opponentScore,
     );
     String id = "$format-$you-$opponent-${now.toString().replaceAll('.', '-')}";
-    ref.child('Record').child(id).set(record.toJson());
+    ref
+        .child('Record')
+        .child(id)
+        .set(record.toJson())
+        .then((value) => showToast('Record Added Successfully.'));
   }
 }
