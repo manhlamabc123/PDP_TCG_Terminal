@@ -94,6 +94,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
+                  Text(
+                    'Rank: ${userCurrent!.rankPoint} - Gacha: ${userCurrent!.gachaPoint}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
               const Spacer(),

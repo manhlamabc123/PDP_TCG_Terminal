@@ -33,7 +33,7 @@ class MyAuth {
         passInvalid == false &&
         passCFInvalid == false) {
       final ref = FirebaseDatabase.instance.ref();
-      User user = User(username, password, null); // userId
+      User user = User(username, password, null, 0, 0); // userId
       ref.child('User').child(username).set(user.toJson());
     }
   }
@@ -68,7 +68,7 @@ class MyAuth {
                     entry.value['date'], entry.value['top']))
                 .toList();
           }
-          User user = User(map['username'], map['password'], achievements);
+          User user = User(map['username'], map['password'], achievements, map['rankPoint'], map['gachaPoint']);
           return Future.value(user);
         } else {
           passwordInvalid1 = true;
