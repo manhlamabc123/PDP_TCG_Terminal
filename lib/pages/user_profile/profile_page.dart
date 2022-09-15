@@ -16,8 +16,17 @@ class ProfilePage extends StatefulWidget {
 
 int currentIndex = 0;
 List<Icon> gameIcons = [
+  const Icon(FontAwesomeIcons.n),
   const Icon(FontAwesomeIcons.v),
-  const Icon(FontAwesomeIcons.y)
+  const Icon(
+    FontAwesomeIcons.v,
+    color: Color(0xFFffd700),
+  ),
+  const Icon(FontAwesomeIcons.y),
+  const Icon(
+    FontAwesomeIcons.y,
+    color: Color(0xFFffd700),
+  ),
 ];
 
 class _ProfilePageState extends State<ProfilePage> {
@@ -214,7 +223,10 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListTile(
               leading: SizedBox(
                 height: double.infinity,
-                child: gameIcons[getGameIcon(userMatchHistory[index].format)],
+                child: gameIcons[getGameIcon(
+                  userMatchHistory[index].format,
+                  userMatchHistory[index].status,
+                )],
               ),
               title: Text(getMatchOpponent(userMatchHistory, index)),
               subtitle: Text(userMatchHistory[index].date),
@@ -264,18 +276,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return ((matchWin / total) * 100);
   }
 
-  static int getGameIcon(String format) {
+  static int getGameIcon(String format, String status) {
     switch (format) {
       case "Standard":
       case "V-Premium":
       case "Premium":
-        return 0;
+        return status == "Unofficial" ? 1 : 2;
       case "Master Duel":
       case "Goat":
       case "Speed":
       case "Rush":
-        return 1;
+        return status == "Unofficial" ? 3 : 4;
     }
-    return 1;
+    return 0;
   }
 }
