@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/lists.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
@@ -176,6 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
     },
   );
+
   Widget matchHistoryWidget = ListView.builder(
     shrinkWrap: true,
     itemCount: userMatchHistory.length,
@@ -189,33 +191,31 @@ class _ProfilePageState extends State<ProfilePage> {
             border: Border.all(color: kPrimaryColor, width: 4),
           ),
           child: ListTile(
-            title: Text(
-                "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
+            title: Text(getMatchOpponent(userMatchHistory, index)),
             subtitle: Text(userMatchHistory[index].date),
           ),
         ),
       );
     },
   );
-  Widget collectionWidget = ListView.builder(
-    shrinkWrap: true,
-    itemCount: userMatchHistory.length,
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor2,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: kPrimaryColor, width: 4),
-          ),
-          child: ListTile(
-            title: Text(
-                "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
-            subtitle: Text(userMatchHistory[index].date),
-          ),
-        ),
-      );
-    },
+
+  Widget collectionWidget = Container(
+    alignment: Alignment.center,
+    margin: const EdgeInsets.only(top: 200),
+    child: const Text(
+      "Coming Soon",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 40,
+      ),
+    ),
   );
+
+  static String getMatchOpponent(List<Record> userMatchHistory, int index) {
+    if (userCurrent!.username == userMatchHistory[index].opponent) {
+      return "VS: ${userMatchHistory[index].you}";
+    } else {
+      return "VS: ${userMatchHistory[index].opponent}";
+    }
+  }
 }
