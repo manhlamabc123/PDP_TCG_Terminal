@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pdp_tcg/classes/record.dart';
@@ -44,133 +46,148 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       appBar: buildAppBar(context, "Profile"),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              const Spacer(),
-              ProfileWidget(imagePath: imagePath, onClicked: () async {}),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    userCurrent!.username,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
+      body: RefreshIndicator(
+        onRefresh: _pullRefresh,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Spacer(),
+                ProfileWidget(imagePath: imagePath, onClicked: () async {}),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      userCurrent!.username,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Winrate: ',
-                        style: TextStyle(
-                          color: Colors.white,
+                    Row(
+                      children: [
+                        const Text(
+                          'Winrate: ',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "${getWinRate(userMatchHistory).toStringAsFixed(2)}%",
-                        style: const TextStyle(
-                          color: Colors.white,
+                        Text(
+                          "${getWinRate(userMatchHistory).toStringAsFixed(2)}%",
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Favorite Deck: ',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        favoriteDeck,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'Rank: ${userCurrent!.rankPoint} - Gacha: ${userCurrent!.gachaPoint}',
-                    style: const TextStyle(
-                      color: Colors.white,
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 15),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(34),
+                    Row(
+                      children: [
+                        const Text(
+                          'Favorite Deck: ',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          favoriteDeck,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      'Rank: ${userCurrent!.rankPoint} - Gacha: ${userCurrent!.gachaPoint}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categories.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 17.0, top: 20.0),
-                          child: index == currentIndex
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
+                const Spacer(),
+              ],
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                margin: const EdgeInsets.only(top: 15),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(34),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.only(left: 17.0, top: 20.0),
+                            child: index == currentIndex
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        categories[index],
+                                        style: const TextStyle(
+                                          color: kPrimaryColor,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        radius: 2,
+                                        backgroundColor: kPrimaryColor,
+                                      )
+                                    ],
+                                  )
+                                : InkWell(
+                                    child: Text(
                                       categories[index],
-                                      style: const TextStyle(
-                                        color: kPrimaryColor,
+                                      style: TextStyle(
+                                        color: Colors.grey.withOpacity(0.9),
                                         fontSize: 20,
                                       ),
                                     ),
-                                    const CircleAvatar(
-                                      radius: 2,
-                                      backgroundColor: kPrimaryColor,
-                                    )
-                                  ],
-                                )
-                              : InkWell(
-                                  child: Text(
-                                    categories[index],
-                                    style: TextStyle(
-                                      color: Colors.grey.withOpacity(0.9),
-                                      fontSize: 20,
-                                    ),
+                                    onTap: () => setState(() {
+                                      currentIndex = index;
+                                      debugPrint(currentIndex.toString());
+                                    }),
                                   ),
-                                  onTap: () => setState(() {
-                                    currentIndex = index;
-                                    debugPrint(currentIndex.toString());
-                                  }),
-                                ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: widgetList[currentIndex],
-                  )
-                ],
+                    Container(
+                      child: widgetList[currentIndex],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('User').child(userCurrent!.username).get();
+    if (snapshot.exists) {
+      Map map = snapshot.value as dynamic;
+      userCurrent!.rankPoint = map['rankPoint'];
+      userCurrent!.gachaPoint = map['gachaPoint'];
+    }
+    setState(() {});
   }
 
   Widget achievementWidget = userCurrent!.achievements != null
