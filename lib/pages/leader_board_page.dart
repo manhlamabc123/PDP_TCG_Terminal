@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/constants.dart';
-import 'package:pdp_tcg/lists.dart';
 import 'package:pdp_tcg/pages/user_profile/appbar_widget.dart';
 
 List<User> userRanking = [];
