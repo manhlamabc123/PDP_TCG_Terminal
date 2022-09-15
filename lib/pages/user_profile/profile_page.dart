@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/lists.dart';
@@ -14,6 +15,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 int currentIndex = 0;
+List<Icon> gameIcons = [
+  const Icon(FontAwesomeIcons.v),
+  const Icon(FontAwesomeIcons.y)
+];
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
@@ -153,59 +158,71 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget achievementWidget = userCurrent!.achievements != null ? ListView.builder(
-    shrinkWrap: true,
-    itemCount: userCurrent!.achievements?.length,
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor2,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: kPrimaryColor, width: 4),
+  Widget achievementWidget = userCurrent!.achievements != null
+      ? Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: userCurrent!.achievements?.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor2,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: kPrimaryColor, width: 4),
+                  ),
+                  child: ListTile(
+                    leading: SizedBox(
+                      height: double.infinity,
+                      child:
+                          iconList[userCurrent!.achievements![index].getTop()],
+                    ),
+                    title: Text(userCurrent!.achievements![index].getName()),
+                    subtitle: Text(userCurrent!.achievements![index].getDate()),
+                  ),
+                ),
+              );
+            },
           ),
-          child: ListTile(
-            leading: SizedBox(
-                height: double.infinity,
-                child: iconList[userCurrent!.achievements![index].getTop()]),
-            title: Text(userCurrent!.achievements![index].getName()),
-            subtitle: Text(userCurrent!.achievements![index].getDate()),
+        )
+      : Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.only(top: 200),
+          child: const Text(
+            "Nothing yet...",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 40,
+            ),
           ),
-        ),
-      );
-    },
-  ) : Container(
-    alignment: Alignment.center,
-    margin: const EdgeInsets.only(top: 200),
-    child: const Text(
-      "Nothing yet...",
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 40,
-      ),
-    ),
-  );
+        );
 
-  Widget matchHistoryWidget = ListView.builder(
-    shrinkWrap: true,
-    itemCount: userMatchHistory.length,
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor2,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: kPrimaryColor, width: 4),
+  Widget matchHistoryWidget = Expanded(
+    child: ListView.builder(
+      shrinkWrap: true,
+      itemCount: userMatchHistory.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: kPrimaryColor2,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: kPrimaryColor, width: 4),
+            ),
+            child: ListTile(
+              leading: SizedBox(
+                height: double.infinity,
+                child: gameIcons[getGameIcon(userMatchHistory[index].format)],
+              ),
+              title: Text(getMatchOpponent(userMatchHistory, index)),
+              subtitle: Text(userMatchHistory[index].date),
+            ),
           ),
-          child: ListTile(
-            title: Text(getMatchOpponent(userMatchHistory, index)),
-            subtitle: Text(userMatchHistory[index].date),
-          ),
-        ),
-      );
-    },
+        );
+      },
+    ),
   );
 
   Widget collectionWidget = Container(
@@ -245,5 +262,20 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     }
     return (matchWin / total) * 100;
+  }
+
+  static int getGameIcon(String format) {
+    switch (format) {
+      case "Standard":
+      case "V-Premium":
+      case "Premium":
+        return 0;
+      case "Master Duel":
+      case "Goat":
+      case "Speed":
+      case "Rush":
+        return 1;
+    }
+    return 1;
   }
 }
