@@ -116,4 +116,31 @@ class MyAuth {
         opponentScore == null) return false;
     return true;
   }
+
+  static Future<List<Record>> getUserMatchHistory() async {
+    List<Record> records = [];
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('Record').get();
+    if (snapshot.exists) {
+      Map map = snapshot.value as dynamic;
+      map.forEach((key, value) {
+        if (key.toString().contains(userCurrent!.username)) {
+          Record record = Record(
+              value['status'],
+              value['format'],
+              value['you'],
+              value['opponent'],
+              value['yourDeck'],
+              value['opponentDeck'],
+              value['yourScore'],
+              value['opponentScore']);
+          records.add(record);
+        }
+      });
+    } else {
+      debugPrint('Nothing');
+    }
+
+    return Future.value(records);
+  }
 }
