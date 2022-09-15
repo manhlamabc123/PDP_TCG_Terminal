@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdp_tcg/classes/my_auth.dart';
+import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/pages/home_page.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
@@ -15,6 +16,7 @@ const passwordError1 = "Incorrect Password";
 bool passwordInvalid1 = false;
 bool passwordInvalid2 = true;
 User? userCurrent;
+List<Record> userMatchHistory = [];
 
 class _SignInPageState extends State<SignInPage> {
   bool isPasswordVisible = true;
@@ -74,15 +76,17 @@ class _SignInPageState extends State<SignInPage> {
                         padding: const EdgeInsets.only(top: 15, right: 15),
                         child: ElevatedButton(
                           onPressed: () {
-                            //TO DO
-                            debugPrint('Username: ${usernameController.text}');
-                            debugPrint('Password: $password');
                             MyAuth.signInUser(
                               usernameController.text,
                               password,
                             ).then((value) {
                               setState(() {
                                 userCurrent = value;
+                                MyAuth.getUserMatchHistory().then((value) {
+                                  setState(() {
+                                    userMatchHistory = value;
+                                  });
+                                });
                               });
                               if (userCurrent != null) {
                                 Navigator.push(

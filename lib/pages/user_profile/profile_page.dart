@@ -1,7 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/classes/my_auth.dart';
-import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/lists.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
@@ -18,18 +15,6 @@ class ProfilePage extends StatefulWidget {
 int currentIndex = 0;
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<Record> userMatchHistory = [];
-
-  @override
-  void initState() {
-    super.initState();
-    MyAuth.getUserMatchHistory().then((value) {
-      setState(() {
-        userMatchHistory = value;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     const imagePath =
@@ -37,7 +22,11 @@ class _ProfilePageState extends State<ProfilePage> {
     int winRate = 20;
     String favoriteDeck = 'Luard';
     final categories = ['Achievements', 'Match History', 'Collection'];
-    final achievements = userCurrent!.achievements;
+    List<Widget> widgetList = [
+      achievementWidget,
+      matchHistoryWidget,
+      collectionWidget
+    ];
 
     return Scaffold(
       appBar: buildAppBar(context),
@@ -152,52 +141,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                   ),
-                  // ListView.builder(
-                  //   shrinkWrap: true,
-                  //   itemCount: userCurrent!.achievements?.length,
-                  //   itemBuilder: (context, index) {
-                  //     return Padding(
-                  //       padding:
-                  //           const EdgeInsets.only(top: 5, right: 10, left: 10),
-                  //       child: Container(
-                  //         decoration: BoxDecoration(
-                  //           color: kPrimaryColor2,
-                  //           borderRadius: BorderRadius.circular(12),
-                  //           border: Border.all(color: kPrimaryColor, width: 4),
-                  //         ),
-                  //         child: ListTile(
-                  //           leading: SizedBox(
-                  //             height: double.infinity,
-                  //             child: iconList[achievements![index].getTop()]),
-                  //           title: Text(achievements[index].getName()),
-                  //           subtitle: Text(achievements[index].getDate()),
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: userMatchHistory.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding:
-                            const EdgeInsets.only(top: 5, right: 10, left: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor2,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: kPrimaryColor, width: 4),
-                          ),
-                          child: ListTile(
-                            title: Text(
-                                "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
-                            subtitle: Text(userMatchHistory[index].date),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  Container(
+                    child: widgetList[currentIndex],
+                  )
                 ],
               ),
             ),
@@ -206,4 +152,70 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget achievementWidget = ListView.builder(
+    shrinkWrap: true,
+    itemCount: userCurrent!.achievements?.length,
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: kPrimaryColor2,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: kPrimaryColor, width: 4),
+          ),
+          child: ListTile(
+            leading: SizedBox(
+                height: double.infinity,
+                child: iconList[userCurrent!.achievements![index].getTop()]),
+            title: Text(userCurrent!.achievements![index].getName()),
+            subtitle: Text(userCurrent!.achievements![index].getDate()),
+          ),
+        ),
+      );
+    },
+  );
+  Widget matchHistoryWidget = ListView.builder(
+    shrinkWrap: true,
+    itemCount: userMatchHistory.length,
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: kPrimaryColor2,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: kPrimaryColor, width: 4),
+          ),
+          child: ListTile(
+            title: Text(
+                "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
+            subtitle: Text(userMatchHistory[index].date),
+          ),
+        ),
+      );
+    },
+  );
+  Widget collectionWidget = ListView.builder(
+    shrinkWrap: true,
+    itemCount: userMatchHistory.length,
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: kPrimaryColor2,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: kPrimaryColor, width: 4),
+          ),
+          child: ListTile(
+            title: Text(
+                "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
+            subtitle: Text(userMatchHistory[index].date),
+          ),
+        ),
+      );
+    },
+  );
 }
