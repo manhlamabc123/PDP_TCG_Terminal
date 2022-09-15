@@ -98,6 +98,7 @@ class MyAuth {
       yourScore,
       opponentDeck,
       opponentScore,
+      dateCreate(now.day, now.month, now.year),
     );
     String id = "$format-$you-$opponent-${now.toString().replaceAll('.', '-')}";
     ref
@@ -105,6 +106,16 @@ class MyAuth {
         .child(id)
         .set(record.toJson())
         .then((value) => showToast('Record Added Successfully.'));
+  }
+
+  static String dateCreate(int day, int month, int year) {
+    String date = "";
+    if (month <= 9) {
+      date = "$year-0$month-$day";
+    } else {
+      date = "$year-$month-$day";
+    }
+    return date;
   }
 
   static bool checkSubmitInput(String? opponent, String? yourDeck,
@@ -133,14 +144,19 @@ class MyAuth {
               value['yourDeck'],
               value['opponentDeck'],
               value['yourScore'],
-              value['opponentScore']);
+              value['opponentScore'],
+              value['date']);
           records.add(record);
         }
       });
     } else {
       debugPrint('Nothing');
     }
-
+    records.sort((a, b) {
+      DateTime dateTimeA = DateTime.parse(a.date);
+      DateTime dateTimeB = DateTime.parse(b.date);
+      return dateTimeB.compareTo(dateTimeA);
+    });
     return Future.value(records);
   }
 }

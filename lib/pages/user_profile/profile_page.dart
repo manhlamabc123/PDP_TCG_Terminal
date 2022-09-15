@@ -192,6 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: ListTile(
                             title: Text(
                                 "${userMatchHistory[index].you} VS ${userMatchHistory[index].opponent}"),
+                            subtitle: Text(userMatchHistory[index].date),
                           ),
                         ),
                       );
