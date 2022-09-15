@@ -153,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget achievementWidget = ListView.builder(
+  Widget achievementWidget = userCurrent!.achievements != null ? ListView.builder(
     shrinkWrap: true,
     itemCount: userCurrent!.achievements?.length,
     itemBuilder: (context, index) {
@@ -175,6 +175,16 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
     },
+  ) : Container(
+    alignment: Alignment.center,
+    margin: const EdgeInsets.only(top: 200),
+    child: const Text(
+      "Nothing yet...",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 40,
+      ),
+    ),
   );
 
   Widget matchHistoryWidget = ListView.builder(

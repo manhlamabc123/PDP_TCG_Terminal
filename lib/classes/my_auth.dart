@@ -60,11 +60,14 @@ class MyAuth {
         if (password == map['password']) {
           passwordInvalid1 = false;
           passwordInvalid2 = false;
-          Map map2 = Map<String, dynamic>.from(map['achievements']);
-          List<Achievement> achievements = map2.entries
-              .map((entry) => Achievement(
-                  entry.value['name'], entry.value['date'], entry.value['top']))
-              .toList();
+          List<Achievement>? achievements;
+          if (map['achievements'] != null) {
+            Map map2 = Map<String, dynamic>.from(map['achievements']);
+            achievements = map2.entries
+                .map((entry) => Achievement(entry.value['name'],
+                    entry.value['date'], entry.value['top']))
+                .toList();
+          }
           User user = User(map['username'], map['password'], achievements);
           return Future.value(user);
         } else {
@@ -100,6 +103,12 @@ class MyAuth {
       opponentScore,
       dateCreate(now.day, now.month, now.year),
     );
+    userMatchHistory.add(record);
+    userMatchHistory.sort((a, b) {
+      DateTime dateTimeA = DateTime.parse(a.date);
+      DateTime dateTimeB = DateTime.parse(b.date);
+      return dateTimeB.compareTo(dateTimeA);
+    });
     String id = "$format-$you-$opponent-${now.toString().replaceAll('.', '-')}";
     ref
         .child('Record')
