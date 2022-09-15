@@ -229,7 +229,7 @@ class _ProfilePageState extends State<ProfilePage> {
     alignment: Alignment.center,
     margin: const EdgeInsets.only(top: 200),
     child: const Text(
-      "Coming Soon",
+      "Coming Soon...",
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 40,
