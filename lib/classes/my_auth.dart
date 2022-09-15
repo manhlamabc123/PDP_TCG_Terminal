@@ -68,7 +68,8 @@ class MyAuth {
                     entry.value['date'], entry.value['top']))
                 .toList();
           }
-          User user = User(map['username'], map['password'], achievements, map['rankPoint'], map['gachaPoint']);
+          User user = User(map['username'], map['password'], achievements,
+              map['rankPoint'], map['gachaPoint']);
           return Future.value(user);
         } else {
           passwordInvalid1 = true;
@@ -109,12 +110,42 @@ class MyAuth {
       DateTime dateTimeB = DateTime.parse(b.date);
       return dateTimeB.compareTo(dateTimeA);
     });
+    String rankPointGet = int.parse(yourScore) < int.parse(opponentScore)
+        ? "+1 Gacha Point"
+        : "+3 Gacha Point, +1 Rank Point";
+    String toast = status == "Unofficial" ? "+1 Gacha Point" : rankPointGet;
     String id = "$format-$you-$opponent-${now.toString().replaceAll('.', '-')}";
     ref
         .child('Record')
         .child(id)
         .set(record.toJson())
-        .then((value) => showToast('Record Added Successfully.'));
+        .then((value) => showToast(toast));
+
+    int yourRankPointPlus =
+        int.parse(yourScore) < int.parse(opponentScore) ? 0 : 1;
+    int yourGachaPointPlus =
+        int.parse(yourScore) < int.parse(opponentScore) ? 1 : 3;
+    userCurrent!.rankPoint = userCurrent!.rankPoint! + yourRankPointPlus;
+    userCurrent!.gachaPoint = userCurrent!.gachaPoint! + yourGachaPointPlus;
+    ref.child('User').child(userCurrent!.username).update({
+      "rankPoint": userCurrent!.rankPoint,
+      "gachaPoint": userCurrent!.gachaPoint
+    });
+
+    final snapshot = ref.child('User').child(opponent).get();
+    snapshot.then((value) {
+      if (value.exists) {
+        int oppRankPointPlus =
+            int.parse(yourScore) < int.parse(opponentScore) ? 1 : 0;
+        int oppGachaPointPlus =
+            int.parse(yourScore) < int.parse(opponentScore) ? 3 : 1;
+        Map map = value.value as dynamic;
+        int oppNewRankPoint = map['rankPoint'] + oppRankPointPlus;
+        int oppNewGachaPoint = map['gachaPoint'] + oppGachaPointPlus;
+        ref.child('User').child(opponent).update(
+            {"rankPoint": oppNewRankPoint, "gachaPoint": oppNewGachaPoint});
+      }
+    });
   }
 
   static String dateCreate(int day, int month, int year) {
