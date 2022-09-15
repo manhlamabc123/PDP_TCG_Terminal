@@ -1,7 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/database.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/lists.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
@@ -25,8 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
     int winRate = 20;
     String favoriteDeck = 'Luard';
     final categories = ['Achievements', 'Match History', 'Collection'];
-    final ref = FirebaseDatabase.instance.ref();
-    final query = ref.child('User');
+    final achievements = userCurrent!.achievements;
 
     return Scaffold(
       appBar: buildAppBar(context),
@@ -141,12 +137,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                   ),
-                  FirebaseDatabaseListView(
+                  ListView.builder(
                     shrinkWrap: true,
-                    query: query,
-                    itemBuilder: (context, doc) {
-                      Map map = doc.value as dynamic;
-
+                    itemCount: userCurrent!.achievements?.length,
+                    itemBuilder: (context, index) {
                       return Padding(
                         padding:
                             const EdgeInsets.only(top: 5, right: 10, left: 10),
@@ -157,8 +151,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             border: Border.all(color: kPrimaryColor, width: 4),
                           ),
                           child: ListTile(
-                            leading: iconList[0],
-                            title: Text(map['username']),
+                            leading: SizedBox(
+                              height: double.infinity,
+                              child: iconList[achievements![index].getTop()]),
+                            title: Text(achievements[index].getName()),
+                            subtitle: Text(achievements[index].getDate()),
                           ),
                         ),
                       );

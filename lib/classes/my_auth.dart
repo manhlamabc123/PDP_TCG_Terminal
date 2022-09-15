@@ -1,11 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:pdp_tcg/classes/achievement.dart';
 import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/classes/user.dart';
 import 'package:pdp_tcg/widgets/build_username.dart';
 import 'package:pdp_tcg/pages/sign_up_page.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
-import 'package:flutter/material.dart';
 
 class MyAuth {
   static void signUpUser(
@@ -32,7 +33,7 @@ class MyAuth {
         passInvalid == false &&
         passCFInvalid == false) {
       final ref = FirebaseDatabase.instance.ref();
-      User user = User(username, password); // userId
+      User user = User(username, password, null); // userId
       ref.child('User').child(username).set(user.toJson());
     }
   }
@@ -59,7 +60,12 @@ class MyAuth {
         if (password == map['password']) {
           passwordInvalid1 = false;
           passwordInvalid2 = false;
-          User user = User(map['username'], map['password']);
+          Map map2 = Map<String, dynamic>.from(map['achievements']);
+          List<Achievement> achievements = map2.entries
+              .map((entry) => Achievement(
+                  entry.value['name'], entry.value['date'], entry.value['top']))
+              .toList();
+          User user = User(map['username'], map['password'], achievements);
           return Future.value(user);
         } else {
           passwordInvalid1 = true;
