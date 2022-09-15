@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
     ];
 
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar: buildAppBar(context, "Profile"),
       body: Column(
         children: [
           Row(
