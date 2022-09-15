@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 50,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
