@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Text(
-                        "${getWinRate(userMatchHistory)}%",
+                        "${getWinRate(userMatchHistory).toStringAsFixed(2)}%",
                         style: const TextStyle(
                           color: Colors.white,
                         ),
@@ -261,7 +261,7 @@ class _ProfilePageState extends State<ProfilePage> {
         }
       }
     }
-    return (matchWin / total) * 100;
+    return ((matchWin / total) * 100);
   }
 
   static int getGameIcon(String format) {
