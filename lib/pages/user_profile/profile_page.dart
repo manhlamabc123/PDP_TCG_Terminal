@@ -20,8 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     const imagePath =
         'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80';
-    int winRate = 20;
-    String favoriteDeck = 'Luard';
+    String favoriteDeck = '';
     final categories = ['Achievements', 'Match History', 'Collection'];
     List<Widget> widgetList = [
       achievementWidget,
@@ -58,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Text(
-                        "$winRate%",
+                        "${getWinRate(userMatchHistory)}%",
                         style: const TextStyle(
                           color: Colors.white,
                         ),
@@ -217,5 +216,24 @@ class _ProfilePageState extends State<ProfilePage> {
     } else {
       return "VS: ${userMatchHistory[index].opponent}";
     }
+  }
+
+  static double getWinRate(List<Record> userMatchHistory) {
+    int total = userMatchHistory.length;
+    int matchWin = 0;
+    for (Record record in userMatchHistory) {
+      double yourScore = double.parse(record.yourScore);
+      double opponentScore = double.parse(record.opponentScore);
+      if (userCurrent!.username == record.opponent) {
+        if (yourScore < opponentScore) {
+          matchWin += 1;
+        }
+      } else {
+        if (yourScore > opponentScore) {
+          matchWin += 1;
+        }
+      }
+    }
+    return (matchWin / total) * 100;
   }
 }

@@ -142,8 +142,8 @@ class MyAuth {
               value['you'],
               value['opponent'],
               value['yourDeck'],
-              value['opponentDeck'],
               value['yourScore'],
+              value['opponentDeck'],
               value['opponentScore'],
               value['date']);
           records.add(record);
