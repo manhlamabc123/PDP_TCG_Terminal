@@ -1,4 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/database.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pdp_tcg/constants.dart';
+import 'package:pdp_tcg/lists.dart';
 import 'package:pdp_tcg/pages/sign_in_page.dart';
 import 'package:pdp_tcg/pages/user_profile/appbar_widget.dart';
 import 'package:pdp_tcg/pages/user_profile/profile_widget.dart';
@@ -20,6 +25,8 @@ class _ProfilePageState extends State<ProfilePage> {
     int winRate = 20;
     String favoriteDeck = 'Luard';
     final categories = ['Achievements', 'Match History', 'Collection'];
+    final ref = FirebaseDatabase.instance.ref();
+    final query = ref.child('User');
 
     return Scaffold(
       appBar: buildAppBar(context),
@@ -107,13 +114,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Text(
                                       categories[index],
                                       style: const TextStyle(
-                                        color: Colors.purple,
+                                        color: kPrimaryColor,
                                         fontSize: 20,
                                       ),
                                     ),
                                     const CircleAvatar(
                                       radius: 2,
-                                      backgroundColor: Colors.purple,
+                                      backgroundColor: kPrimaryColor,
                                     )
                                   ],
                                 )
@@ -133,6 +140,29 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
+                  ),
+                  FirebaseDatabaseListView(
+                    shrinkWrap: true,
+                    query: query,
+                    itemBuilder: (context, doc) {
+                      Map map = doc.value as dynamic;
+
+                      return Padding(
+                        padding:
+                            const EdgeInsets.only(top: 5, right: 10, left: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor2,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: kPrimaryColor, width: 4),
+                          ),
+                          child: ListTile(
+                            leading: iconList[0],
+                            title: Text(map['username']),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
