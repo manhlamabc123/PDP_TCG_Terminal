@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pdp_tcg/classes/achievement.dart';
+import 'package:pdp_tcg/classes/post.dart';
 import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/classes/toast.dart';
 import 'package:pdp_tcg/classes/user.dart';
@@ -79,6 +80,23 @@ class MyAuth {
       }
     }
     return Future.value(null);
+  }
+
+  static void submitPost(String? title, String? description) {
+    final ref = FirebaseDatabase.instance.ref();
+    DateTime now = DateTime.now();
+    Post post = Post(
+      title,
+      description,
+      userCurrent!.username,
+      dateCreate(now.day, now.month, now.year),
+    );
+    String id = "${userCurrent!.username}-${now.toString().replaceAll('.', '-')}";
+    ref
+        .child('Post')
+        .child(id)
+        .set(post.toJson())
+        .then((value) => showToast("Posted"));
   }
 
   static void submitRecord(

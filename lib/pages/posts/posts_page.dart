@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdp_tcg/pages/posts/add_button.dart';
 import 'package:pdp_tcg/pages/user_profile/appbar_widget.dart';
 
 class PostsPage extends StatelessWidget {
@@ -8,10 +9,7 @@ class PostsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, "News"),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: const AddTodoButton(),
       body: Column(
         children: [
           Expanded(

@@ -23,8 +23,4 @@ class Record {
         'opponentScore': opponentScore,
         'date': date
       };
-
-  void sort() {
-    
-  }
 }
