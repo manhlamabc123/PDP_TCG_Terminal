@@ -82,13 +82,13 @@ class _SignInPageState extends State<SignInPage> {
                             ).then((value) {
                               setState(() {
                                 userCurrent = value;
+                              });
+                              if (userCurrent != null) {
                                 MyAuth.getUserMatchHistory().then((value) {
                                   setState(() {
                                     userMatchHistory = value;
                                   });
                                 });
-                              });
-                              if (userCurrent != null) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
