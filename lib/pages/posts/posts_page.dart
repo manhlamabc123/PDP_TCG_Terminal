@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/pages/user_profile/appbar_widget.dart';
 
 class PostsPage extends StatelessWidget {
