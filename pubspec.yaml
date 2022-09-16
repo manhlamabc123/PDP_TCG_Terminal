@@ -46,6 +46,12 @@ dependencies:
   fluttertoast: ^8.0.9
   flutterfire_ui: ^0.4.3+8
 
+  dart_twitter_api: ^0.5.6+1
+  dartz: ^0.10.1
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^1.0.4
+  http: ^0.13.5
+
 dev_dependencies:
   flutter_launcher_icons: ^0.10.0
   flutter_test:
