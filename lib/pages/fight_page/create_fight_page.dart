@@ -397,14 +397,7 @@ class _CreateFightPageState extends State<CreateFightPage> {
                         opponentDeck!,
                         yourScore!.toString(),
                         opponentScore!.toString());
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const FightPage();
-                        },
-                      ),
-                    );
+                    Navigator.pop(context);
                   } else {
                     showToast("All fields must be filled!!!");
                   }
