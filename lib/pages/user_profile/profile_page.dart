@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pdp_tcg/classes/my_auth.dart';
 import 'package:pdp_tcg/classes/record.dart';
 import 'package:pdp_tcg/constants.dart';
 import 'package:pdp_tcg/lists.dart';
@@ -30,8 +31,20 @@ List<Icon> gameIcons = [
     color: Color(0xFFffd700),
   ),
 ];
+int? rankPoint = userCurrent!.rankPoint;
+int? gachaPoint = userCurrent!.gachaPoint;
 
 class _ProfilePageState extends State<ProfilePage> {
+  String winrate = getWinRate(userMatchHistory).toStringAsFixed(2);
+
+  @override
+  void initState() {
+    super.initState();
+    MyAuth.getUserMatchHistory().then((value) {
+      userMatchHistory = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const imagePath =
@@ -99,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                     Text(
-                      'Rank: ${userCurrent!.rankPoint} - Gacha: ${userCurrent!.gachaPoint}',
+                      'Rank: $rankPoint - Gacha: $gachaPoint',
                       style: const TextStyle(
                         color: Colors.white,
                       ),
@@ -187,7 +200,9 @@ class _ProfilePageState extends State<ProfilePage> {
       userCurrent!.rankPoint = map['rankPoint'];
       userCurrent!.gachaPoint = map['gachaPoint'];
     }
-    setState(() {});
+    setState(() {
+      winrate = getWinRate(userMatchHistory).toStringAsFixed(2);
+    });
   }
 
   Widget achievementWidget = userCurrent!.achievements != null
@@ -207,8 +222,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: ListTile(
                     leading: SizedBox(
                       height: double.infinity,
-                      child:
-                          iconList[userCurrent!.achievements![index - 1].getTop()],
+                      child: iconList[
+                          userCurrent!.achievements![index - 1].getTop()],
                     ),
                     title: Text(userCurrent!.achievements![index].getName()),
                     subtitle: Text(userCurrent!.achievements![index].getDate()),
