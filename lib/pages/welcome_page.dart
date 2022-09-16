@@ -35,7 +35,6 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
                 FittedBox(
                   child: GestureDetector(
                     onTap: () {
@@ -49,7 +48,7 @@ class WelcomePage extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(top: 350),
+                      margin: const EdgeInsets.only(top: 150),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 26, vertical: 16),
                       decoration: BoxDecoration(
@@ -79,7 +78,7 @@ class WelcomePage extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    margin: const EdgeInsets.only(bottom: 20, top: 20),
+                    margin: const EdgeInsets.only(top: 20),
                     child: RichText(
                       text: const TextSpan(
                         text: 'Already have an account? Login here!',
