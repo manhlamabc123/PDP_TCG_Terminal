@@ -208,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: SizedBox(
                       height: double.infinity,
                       child:
-                          iconList[userCurrent!.achievements![index].getTop()],
+                          iconList[userCurrent!.achievements![index - 1].getTop()],
                     ),
                     title: Text(userCurrent!.achievements![index].getName()),
                     subtitle: Text(userCurrent!.achievements![index].getDate()),
